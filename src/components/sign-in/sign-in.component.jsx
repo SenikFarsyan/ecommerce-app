@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-//utils
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js';
-
 //actions for saga
-import { googleSignInStart } from '../../redux/user/user.actions';
+import {
+  googleSignInStart,
+  emailSignInStart
+} from '../../redux/user/user.actions';
 
 //styles
 import './sign-in.styles.scss';
@@ -20,16 +20,10 @@ class SignIn extends Component {
   };
   handleSubmit = async e => {
     e.preventDefault();
+    const { emailSignInStart } = this.props;
     const { email, password } = this.state;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({
-        email: '',
-        password: ''
-      });
-    } catch (err) {
-      console.log('User sign in error', err);
-    }
+
+    emailSignInStart(email, password);
   };
   handleChange = e => {
     const { value, name } = e.target;
@@ -79,7 +73,9 @@ class SignIn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    googleSignInStart: () => dispatch(googleSignInStart())
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) =>
+      dispatch(emailSignInStart({ email, password }))
   };
 };
 
