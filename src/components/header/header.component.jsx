@@ -13,9 +13,6 @@ import { signOutStart } from '../../redux/user/user.actions';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-//utils
-import { auth } from '../../firebase/firebase.utils';
-
 //icons
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 //styled components
