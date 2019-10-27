@@ -16,8 +16,7 @@ import {
   signOutSuccess,
   signOutFailure,
   signUpSuccess,
-  signUpFailure,
-  signUpStart
+  signUpFailure
 } from './user.actions';
 
 export function* getSnapshotUserAuth(userAuth, additionalData) {
